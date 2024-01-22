@@ -1,11 +1,15 @@
 import Background from "../_components/background";
-import Header from "../_components/header";
+import Container from "../_components/container";
+import Footer from "../_components/footer";
+import HashtagList from "../_components/hashtag-list";
 
 export default function Page() {
   return (
     <>
       <Background>
-        <Header />
+        <Footer />
+        <Container />
+        <HashtagList />
       </Background>
     </>
   );

@@ -28,6 +28,7 @@ model CorpComment {
   comment      String
   badgeLetters String
   companyName  String
+  upvoteCount  Int      @default(0)
 
   @@map("corp_comments")
 }
