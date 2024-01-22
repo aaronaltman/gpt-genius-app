@@ -3,7 +3,7 @@ export default function Pattern() {
     <img
       src="https://bytegrad.com/course-assets/js/1/pattern.svg"
       alt="background pattern"
-      className=""
+      className="h-28"
     />
   );
 }

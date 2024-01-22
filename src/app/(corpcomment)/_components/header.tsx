@@ -6,7 +6,7 @@ import Pattern from "./header/pattern";
 export default function Header() {
   return (
     <>
-      <header className="">
+      <header className="flex flex-col justify-center items-center">
         <Pattern />
         <Logo />
         <PageHeading />
