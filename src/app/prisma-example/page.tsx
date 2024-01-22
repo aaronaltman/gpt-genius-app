@@ -1,3 +1,4 @@
+import TaskForm from "@/components/task-form";
 import TaskList from "@/components/task-list";
 
 export default async function Page() {
@@ -7,6 +8,7 @@ export default async function Page() {
       <p>Check your console to see the results of the Prisma queries.</p>
 
       <TaskList />
+      <TaskForm />
     </div>
   );
 }
