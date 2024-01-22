@@ -4,7 +4,7 @@ import ListItems from "./list-items";
 
 export default function Container() {
   return (
-    <div className="flex flex-col items-center text-white  bg-black">
+    <div className="flex flex-col items-center text-white bg-black w-1/2">
       <Header />
       <ListItems />
     </div>
