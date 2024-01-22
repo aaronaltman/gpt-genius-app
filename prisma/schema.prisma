@@ -20,3 +20,14 @@ model Note {
 
   @@map("notes")
 }
+
+model CorpComment {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  comment      String
+  badgeLetters String
+  companyName  String
+
+  @@map("corp_comments")
+}
