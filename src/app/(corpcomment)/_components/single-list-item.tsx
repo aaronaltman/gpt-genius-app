@@ -7,7 +7,7 @@ import { CorpComment } from "@prisma/client";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export default async function SingleListItem({
+export default function SingleListItem({
   corpComments,
 }: {
   corpComments: CorpComment[];
@@ -36,7 +36,7 @@ export default async function SingleListItem({
             </button>
           </form>
           <motion.div
-            className="flex flex-col justify-center basis-1/12 items-center my-2 px-4 rounded-md bg-accent h-10 uppercase text-xl text-white font-bold italic"
+            className="flex flex-col justify-center basis-1/12 items-center my-2 px-4 rounded-md bg-accent h-10 uppercase text-xl text-white font-bold italic odd-bg-green"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -45,7 +45,7 @@ export default async function SingleListItem({
           </motion.div>
           <div className="flex basis-9/12 justify-between px-2">
             <div>
-              <p className="text-lg font-semibold">{corpComment.companyName}</p>
+              <p className="text-lg font-bold">{corpComment.companyName}</p>
               <p className="text-sm">{corpComment.comment}</p>
             </div>
             <p className="text-sm italic">{DAYS_AGO(corpComment)}</p>
