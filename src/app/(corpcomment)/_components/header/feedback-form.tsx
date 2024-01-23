@@ -15,6 +15,9 @@ export default function FeedbackForm() {
     <form
       action={createCorpComment}
       className="flex flex-col  bg-slate-900 my-12 rounded-lg px-10 border border-white shadow-lg w-3/4"
+      onSubmit={(e) => {
+        setFeedback("");
+      }}
     >
       <label hidden htmlFor="feedback">
         Feedback

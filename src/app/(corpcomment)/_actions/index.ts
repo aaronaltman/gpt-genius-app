@@ -2,15 +2,17 @@
 
 import prisma from "@/db";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export default async function createCorpComment(formData: FormData) {
   if (!formData) {
     return;
   }
-  let comment = formData.get("feedback") as string;
+
+  const comment = formData.get("feedback") as string;
   const companyName = comment.includes("#") ? comment.split("#")[0] : comment;
-  let upvoteCount = 420;
-  let badgeLetters = companyName[0];
+  const upvoteCount = 420;
+  const badgeLetters = companyName[0];
   const newCorpComment = await prisma.corpComment.create({
     data: {
       comment,
@@ -19,13 +21,18 @@ export default async function createCorpComment(formData: FormData) {
       badgeLetters,
     },
   });
-  revalidatePath("/corp-comments");
+  revalidatePath("/corp-comment");
+  redirect("/corp-comment");
 }
 
 export async function updateCorpUpvoteCount() {}
 
 export async function getAllCorpComments() {
-  const allCorpComments = await prisma.corpComment.findMany();
+  const allCorpComments = await prisma.corpComment.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
   return allCorpComments;
 }
 

@@ -8,7 +8,7 @@ export default function Header() {
     <>
       <header className="flex flex-col justify-center items-center">
         <Pattern />
-        <div className="flex flex-col w-full justify-center items-center -mt-20">
+        <div className="flex flex-col w-full justify-center items-center -mt-8">
           <Logo />
           <PageHeading />
           <FeedbackForm />
