@@ -1,7 +1,11 @@
+const copyRight = "Big Boss Enterprises";
+
 export default function Footer() {
   return (
-    <footer className="rotate-90 ">
-      <div className="text-[#a6adb5]">&copy; Big Boss Enterprises</div>
+    <footer className="mt-96">
+      <p className=" text-[#a6adb5] rotate-90 mt-90 text-sm">
+        &copy;{copyRight}
+      </p>
     </footer>
   );
 }
