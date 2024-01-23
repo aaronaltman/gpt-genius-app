@@ -21,7 +21,7 @@ export default function SingleListItem({
       {corpComments.map((corpComment) => (
         <li
           key={corpComment.id}
-          className="flex flex-col justify-between sm:flex-row bg-zinc-50 text-slate-900 p-4  rounded-lg shadow-sm mb-1 hover:scale-105 hover:my-2 transition-all hover:ease-in"
+          className="flex flex-col justify-between items-center sm:flex-row bg-zinc-50 text-slate-900 p-4  rounded-lg shadow-sm mb-1 hover:scale-105 hover:my-2 transition-all hover:ease-in"
         >
           <form action={updateCorpUpvoteCount}>
             <input
@@ -41,7 +41,9 @@ export default function SingleListItem({
             animate={{ scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <p>{corpComment.badgeLetters}</p>
+            <p className="flex items-center justify-center">
+              {corpComment.badgeLetters}
+            </p>
           </motion.div>
           <div className="flex basis-9/12 justify-between px-2">
             <div>
