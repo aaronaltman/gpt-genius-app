@@ -21,7 +21,7 @@ export default function FeedbackForm() {
       </label>
       <textarea
         className=" input text-white w-full h-full resize-none p-4 bg-slate-900 my-6"
-        placeholder="Enter Feedback..."
+        placeholder="Enter Feedback for CorpComment. include a # in front of companyName"
         id="feedback"
         name="feedback"
         spellCheck="false"
