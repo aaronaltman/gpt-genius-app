@@ -5,29 +5,28 @@ import { getAllCorpComments } from "../_actions";
 import { DAYS_AGO } from "../_lib/constants";
 
 export default async function SingleListItem() {
+  // Get the data for the list item
   const corpComments = await getAllCorpComments();
   return (
     <>
       {corpComments.map((corpComment) => (
         <li
           key={corpComment.id}
-          className="flex justify-around bg-zinc-50 text-slate-900 p-4 last-of-type:rounded-b-lg last-of-type:shadow-lg"
+          className="flex justify-between sm:flex-row bg-zinc-50 text-slate-900 p-4 mb-2 rounded-lg shadow-sm"
         >
-          <button className="p-4 flex flex-col justify-center items-center">
-            <TriangleUpIcon className="w-6 h-6 text-center" />
-            {corpComment.upvoteCount}
+          <button className="p-2 mb-2 sm:mb-0 flex basis-1/12 flex-col justify-center items-center hover:bg-gray-200 rounded">
+            <TriangleUpIcon className="w-6 h-6" />
+            <span className="text-sm">{corpComment.upvoteCount}</span>
           </button>
-          <div className="flex justify-center items-center my-2 px-4 rounded-md bg-accent">
-            <p className="text-slate-950 text-2xl">
-              {corpComment.badgeLetters}
-            </p>
+          <div className="flex justify-center basis-1/12 items-center my-2 px-4 rounded-md bg-accent">
+            <p className="text-lg text-white">{corpComment.badgeLetters}</p>
           </div>
-          <div>
-            <p className="text-xl">{corpComment.companyName}</p>
-            <p>{corpComment.comment}</p>
-          </div>
-          <div className="flex justify-center items-center">
-            <p>{DAYS_AGO(corpComment)}</p>
+          <div className="flex basis-9/12 justify-between px-2">
+            <div>
+              <p className="text-lg font-semibold">{corpComment.companyName}</p>
+              <p className="text-sm">{corpComment.comment}</p>
+            </div>
+            <p className="text-sm italic">{DAYS_AGO(corpComment)}</p>
           </div>
         </li>
       ))}
