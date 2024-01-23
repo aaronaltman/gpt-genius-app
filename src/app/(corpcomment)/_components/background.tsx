@@ -4,7 +4,7 @@ export default function Background({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col md:flex-row  justify-center bg-primary min-h-screen rounded-sm">
+    <div className="flex flex-col md:flex-row bg-primary min-h-screen justify-center">
       {children}
     </div>
   );

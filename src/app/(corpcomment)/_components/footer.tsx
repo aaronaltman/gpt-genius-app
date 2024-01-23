@@ -1,11 +1,14 @@
 const copyRight = "Big Boss Enterprises";
+const copyReversed = copyRight.split("").reverse().join("");
 
 export default function Footer() {
   return (
-    <footer className="mt-96 hidden md:block">
-      <p className=" text-[#a6adb5] rotate-90 mt-90 text-sm">
-        &copy;{copyRight}
-      </p>
+    <footer className="flex justify-center items-center">
+      <div className="-rotate-90">
+        <p className="text-zinc-300 text-sm">
+          &copy; Big Boss Enterprises. 2024 and beyond...
+        </p>
+      </div>
     </footer>
   );
 }

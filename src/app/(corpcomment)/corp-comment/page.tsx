@@ -8,9 +8,15 @@ export default function Page() {
   return (
     <>
       <Background>
-        <Footer />
-        <Container />
-        <HashtagList />
+        <div className="flex justify-center items-center ">
+          <div className="flex mt-96 -mr-32">
+            <Footer />
+          </div>
+          <div className="flex mx-auto">
+            <Container />
+            <HashtagList />
+          </div>
+        </div>
       </Background>
     </>
   );
