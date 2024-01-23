@@ -12,3 +12,22 @@ export function DAYS_AGO(corpComment: CorpComment) {
   if (days === 0) return "NEW";
   return days;
 }
+
+export const HASHTAG_LIST_ITEMS = [
+  {
+    id: 1,
+    name: "General",
+  },
+  {
+    id: 2,
+    name: "Nike",
+  },
+  {
+    id: 3,
+    name: "Adidas",
+  },
+  {
+    id: 4,
+    name: "Starbucks",
+  },
+];

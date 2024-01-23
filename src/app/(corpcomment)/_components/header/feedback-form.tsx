@@ -20,7 +20,7 @@ export default function FeedbackForm() {
         Feedback
       </label>
       <textarea
-        className=" input text-white w-full h-full resize-none p-4 bg-slate-900"
+        className=" input text-white w-full h-full resize-none p-4 bg-slate-900 my-6"
         placeholder="Enter Feedback..."
         id="feedback"
         name="feedback"
@@ -29,7 +29,7 @@ export default function FeedbackForm() {
         onChange={(e) => setFeedback(e.target.value)}
       />
       <div className="flex justify-between mb-4">
-        <p>{wordcount}</p>
+        <p className="text-accent font-bold">{wordcount}</p>
         <button className="btn btn-secondary">Submit</button>
       </div>
     </form>
