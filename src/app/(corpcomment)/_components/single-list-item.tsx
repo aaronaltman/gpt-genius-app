@@ -26,7 +26,7 @@ export default function SingleListItem({
           <form action={updateCorpUpvoteCount}>
             <input
               type="hidden"
-              name="id"
+              name="corpId"
               value={corpComment.id}
               readOnly={true}
             />
@@ -50,7 +50,9 @@ export default function SingleListItem({
               <p className="text-lg font-bold">{corpComment.companyName}</p>
               <p className="text-sm">{corpComment.comment}</p>
             </div>
-            <p className="text-sm italic">{DAYS_AGO(corpComment)}</p>
+            <p id="getCreatedAt" className="text-sm italic">
+              {DAYS_AGO(corpComment)}
+            </p>
           </div>
         </li>
       ))}

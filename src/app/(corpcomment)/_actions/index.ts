@@ -3,6 +3,7 @@
 import prisma from "@/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { CorpComment } from "@prisma/client";
 
 export default async function createCorpComment(formData: FormData) {
   if (!formData) {
@@ -25,24 +26,28 @@ export default async function createCorpComment(formData: FormData) {
 }
 
 export async function updateCorpUpvoteCount(formData: FormData) {
-  const upvoteCount = 1;
-  const thisThing = await prisma.corpComment.findUnique({
+  const corpcom = formData.get("corpId") as string;
+  if (!formData) {
+    return;
+  }
+  const corpComment = await prisma.corpComment.update({
     where: {
-      id: "1",
+      id: corpcom,
+    },
+    data: {
+      upvoteCount: {
+        increment: 1,
+      },
     },
   });
-  const NewId = await prisma.corpComment.findMany({
-    where: {
-      id: "1",
-      upvoteCount,
-    },
-  });
+  revalidatePath("/corp-comment");
+  return corpComment;
 }
 
 export async function getAllCorpComments() {
   const allCorpComments = await prisma.corpComment.findMany({
     orderBy: {
-      createdAt: "desc",
+      upvoteCount: "desc",
     },
   });
   return allCorpComments;
@@ -58,4 +63,11 @@ export async function getCorpCommentsByCompanyName(companyName: string) {
     },
   });
   return allCorpComments;
+}
+
+export async function getDaysAgoCorpComment(formData: CorpComment) {
+  if (!formData) {
+    return;
+  }
+  const theId = formData.id;
 }
