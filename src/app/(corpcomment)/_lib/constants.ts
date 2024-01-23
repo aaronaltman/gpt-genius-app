@@ -16,18 +16,18 @@ export function DAYS_AGO(corpComment: CorpComment) {
 export const HASHTAG_LIST_ITEMS = [
   {
     id: 1,
-    name: "General",
+    name: "#General",
   },
   {
     id: 2,
-    name: "Nike",
+    name: "#Nike",
   },
   {
     id: 3,
-    name: "Adidas",
+    name: "#Adidas",
   },
   {
     id: 4,
-    name: "Starbucks",
+    name: "#Starbucks",
   },
 ];

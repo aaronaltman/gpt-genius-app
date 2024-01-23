@@ -24,7 +24,20 @@ export default async function createCorpComment(formData: FormData) {
   redirect("/corp-comment");
 }
 
-export async function updateCorpUpvoteCount() {}
+export async function updateCorpUpvoteCount(formData: FormData) {
+  const upvoteCount = 1;
+  const thisThing = await prisma.corpComment.findUnique({
+    where: {
+      id: "1",
+    },
+  });
+  const NewId = await prisma.corpComment.findMany({
+    where: {
+      id: "1",
+      upvoteCount,
+    },
+  });
+}
 
 export async function getAllCorpComments() {
   const allCorpComments = await prisma.corpComment.findMany({

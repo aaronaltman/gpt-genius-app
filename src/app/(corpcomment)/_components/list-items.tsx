@@ -1,10 +1,14 @@
-import SingleListItem from "./single-list-item";
+"use server";
 
-export default function FeedbackList() {
+import SingleListItem from "./single-list-item";
+import { getAllCorpComments } from "../_actions";
+
+export default async function FeedbackList() {
+  const corpComments = await getAllCorpComments();
   return (
     <>
       <ol className="w-full">
-        <SingleListItem />
+        <SingleListItem corpComments={corpComments} />
       </ol>
     </>
   );

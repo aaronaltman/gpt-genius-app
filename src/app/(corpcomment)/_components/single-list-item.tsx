@@ -1,26 +1,48 @@
-"use server";
+"use client";
 
 import { TriangleUpIcon } from "@radix-ui/react-icons";
-import { getAllCorpComments } from "../_actions";
+import { updateCorpUpvoteCount } from "../_actions";
 import { DAYS_AGO } from "../_lib/constants";
+import { CorpComment } from "@prisma/client";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
-export default async function SingleListItem() {
+export default async function SingleListItem({
+  corpComments,
+}: {
+  corpComments: CorpComment[];
+}) {
+  const [comments, setComments] = useState<CorpComment[]>(corpComments);
+  const [upvoteCount, setUpvoteCount] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
   // Get the data for the list item
-  const corpComments = await getAllCorpComments();
   return (
     <>
       {corpComments.map((corpComment) => (
         <li
           key={corpComment.id}
-          className="flex flex-col justify-between sm:flex-row bg-zinc-50 text-slate-900 p-4  rounded-lg shadow-sm mb-1 hover:scale-105 hover:my-2 transition-all"
+          className="flex flex-col justify-between sm:flex-row bg-zinc-50 text-slate-900 p-4  rounded-lg shadow-sm mb-1 hover:scale-105 hover:my-2 transition-all hover:ease-in"
         >
-          <button className="p-2 mb-2 sm:mb-0 flex basis-1/12 flex-col justify-center items-center hover:bg-gray-200 rounded">
-            <TriangleUpIcon className="w-6 h-6" />
-            <span className="text-sm">{corpComment.upvoteCount}</span>
-          </button>
-          <div className="flex flex-col justify-center basis-1/12 items-center my-2 px-4 rounded-md bg-accent">
-            <p className="text-lg text-white">{corpComment.badgeLetters}</p>
-          </div>
+          <form action={updateCorpUpvoteCount}>
+            <input
+              type="hidden"
+              name="id"
+              value={corpComment.id}
+              readOnly={true}
+            />
+            <button className="p-2 mb-2 sm:mb-0 flex basis-1/12 flex-col justify-center items-center hover:bg-gray-200 rounded">
+              <TriangleUpIcon className="w-6 h-6" />
+              <span className="text-sm">{corpComment.upvoteCount}</span>
+            </button>
+          </form>
+          <motion.div
+            className="flex flex-col justify-center basis-1/12 items-center my-2 px-4 rounded-md bg-accent h-10 uppercase text-xl text-white font-bold italic"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <p>{corpComment.badgeLetters}</p>
+          </motion.div>
           <div className="flex basis-9/12 justify-between px-2">
             <div>
               <p className="text-lg font-semibold">{corpComment.companyName}</p>
