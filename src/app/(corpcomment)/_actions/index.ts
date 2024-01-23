@@ -8,10 +8,9 @@ export default async function createCorpComment(formData: FormData) {
   if (!formData) {
     return;
   }
-
   const comment = formData.get("feedback") as string;
   const companyName = comment.includes("#") ? comment.split("#")[0] : comment;
-  const upvoteCount = 420;
+  const upvoteCount = 1;
   const badgeLetters = companyName[0];
   const newCorpComment = await prisma.corpComment.create({
     data: {

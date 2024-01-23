@@ -12,13 +12,13 @@ export default async function SingleListItem() {
       {corpComments.map((corpComment) => (
         <li
           key={corpComment.id}
-          className="flex justify-between sm:flex-row bg-zinc-50 text-slate-900 p-4 mb-2 rounded-lg shadow-sm"
+          className="flex flex-col justify-between sm:flex-row bg-zinc-50 text-slate-900 p-4  rounded-lg shadow-sm mb-1 hover:scale-105 hover:my-2 transition-all"
         >
           <button className="p-2 mb-2 sm:mb-0 flex basis-1/12 flex-col justify-center items-center hover:bg-gray-200 rounded">
             <TriangleUpIcon className="w-6 h-6" />
             <span className="text-sm">{corpComment.upvoteCount}</span>
           </button>
-          <div className="flex justify-center basis-1/12 items-center my-2 px-4 rounded-md bg-accent">
+          <div className="flex flex-col justify-center basis-1/12 items-center my-2 px-4 rounded-md bg-accent">
             <p className="text-lg text-white">{corpComment.badgeLetters}</p>
           </div>
           <div className="flex basis-9/12 justify-between px-2">
