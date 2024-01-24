@@ -1,21 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
+import { CorpComment } from "@prisma/client";
 
-export default function HashtagListButton({ companyName, companyCount }: any) {
-  const [state, setState] = useState({
-    companyName: companyName,
-    companyCount: companyCount,
-  });
+type hashtagListProps = {
+  corpComment: CorpComment;
+};
+
+export default function HashtagListButton({ corpComment }: hashtagListProps) {
+  // Assuming corpComment includes a companyName
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
-    <button
-      onClick={(e) => {
-        console.log(e.target);
-      }}
-      className="btn btn-ghost bg-accent hover:scale-105 hover:bg-white"
-    >
-      #{companyName} ({companyCount})
-    </button>
+    <li className="btn btn-ghost bg-accent hover:scale-105 hover:bg-white">
+      #{corpComment.companyName}
+    </li>
   );
 }

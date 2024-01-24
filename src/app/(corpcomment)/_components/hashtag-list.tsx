@@ -3,24 +3,14 @@ import prisma from "@/db";
 
 export default async function HashtagList() {
   // Fetch unique company names with count of comments
-  const uniqueCompanyNames = await prisma.corpComment.groupBy({
-    by: ["companyName"],
-    _count: {
-      companyName: true,
-    },
-  });
+  const corpComment = await prisma.corpComment.findMany();
 
   return (
     <div>
       <h2 className="text-white pt-10 pb-2 pl-4 font-bold">Filter Companies</h2>
-      <ul className="space-y-4 px-4">
-        {uniqueCompanyNames.map((entry) => (
-          <li key={entry.companyName}>
-            <HashtagListButton
-              companyName={entry.companyName}
-              count={entry._count.companyName}
-            />
-          </li>
+      <ul className="flex flex-col space-y-4 px-4">
+        {corpComment.map((entry) => (
+          <HashtagListButton key={entry.id} corpComment={entry} />
         ))}
       </ul>
     </div>
