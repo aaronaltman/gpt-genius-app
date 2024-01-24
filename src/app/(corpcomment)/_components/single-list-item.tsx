@@ -5,7 +5,6 @@ import { updateCorpUpvoteCount } from "../_actions";
 import { DAYS_AGO } from "../_lib/constants";
 import { CorpComment } from "@prisma/client";
 import { motion } from "framer-motion";
-import { use, useEffect, useState } from "react";
 
 export default function SingleListItem({
   corpComments,

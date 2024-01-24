@@ -1,23 +1,18 @@
-"use client";
+import { onClickSortCompanies } from "../_actions";
 
-import { use, useEffect, useState } from "react";
-import { CorpComment } from "@prisma/client";
-
-type hashtagListProps = {
-  corpComment: CorpComment;
-};
-
-export default function HashtagListButton({ corpComment }: hashtagListProps) {
-  // Assuming corpComment includes a companyName
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+export default function HashtagListButton({ theCompanyName }: any) {
+  // Fetch unique company names with count of comments
 
   return (
-    <li className="btn btn-ghost bg-accent hover:scale-105 hover:bg-white">
-      #{corpComment.companyName}
-    </li>
+    <form action={onClickSortCompanies}>
+      <input
+        type="hidden"
+        name="companyName"
+        value={theCompanyName.companyName}
+      />
+      <button className="btn btn-ghost bg-accent hover:scale-105 hover:bg-white">
+        #{theCompanyName.companyName}
+      </button>
+    </form>
   );
 }

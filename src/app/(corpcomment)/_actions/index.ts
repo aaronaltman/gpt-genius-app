@@ -85,3 +85,16 @@ export async function getDaysAgoCorpComment(formData: CorpComment) {
   }
   const theId = formData.id;
 }
+
+export async function onClickSortCompanies(formData: FormData) {
+  const theName = formData.get("companyName") as string;
+  if (!formData) {
+    return;
+  }
+  const getCompanybyName = await prisma.corpComment.findMany({
+    where: {
+      companyName: theName,
+    },
+  });
+  console.log(getCompanybyName);
+}
