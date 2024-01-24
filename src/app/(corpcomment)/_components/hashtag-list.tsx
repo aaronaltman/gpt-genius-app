@@ -12,9 +12,9 @@ export default async function HashtagList() {
   });
 
   return (
-    <div>
+    <div className="flex flex-col flex-wrap">
       <h2 className="text-white pt-10 pb-2 pl-4 font-bold">Filter Companies</h2>
-      <ul className="flex flex-col space-y-4 px-4">
+      <ul className="flex lg:flex-col space-y-4 px-4">
         {corpComment.map((e) => {
           return (
             <li key={e.id}>

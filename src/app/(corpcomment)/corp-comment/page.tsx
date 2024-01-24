@@ -8,11 +8,9 @@ export default function Page() {
   return (
     <>
       <Background>
-        <div className="flex justify-center items-center ">
-          <div className="flex mt-96 -mr-32">
+        <div className="flex justify-center items-center flex-wrap">
+          <div className="flex flex-wrap mx-auto p-4">
             <Footer />
-          </div>
-          <div className="flex mx-auto">
             <Container />
             <HashtagList />
           </div>
