@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <>
       <Background>
-        <div className="flex justify-center items-center flex-wrap">
+        <div className="flex justify-center items-center flex-wrap lg:-ml-28">
           <div className="flex flex-wrap mx-auto p-4">
             <Footer />
             <Container />
