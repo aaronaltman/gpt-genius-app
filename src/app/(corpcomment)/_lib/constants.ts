@@ -11,7 +11,7 @@ export function DAYS_AGO(corpComment: CorpComment) {
   if (diffDays === 1) {
     return "NEW";
   }
-  return diffDays;
+  return `${diffDays} d`;
 }
 
 export const HASHTAG_LIST_ITEMS = [

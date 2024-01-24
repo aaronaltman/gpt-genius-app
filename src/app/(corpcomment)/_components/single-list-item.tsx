@@ -5,16 +5,13 @@ import { updateCorpUpvoteCount } from "../_actions";
 import { DAYS_AGO } from "../_lib/constants";
 import { CorpComment } from "@prisma/client";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 
 export default function SingleListItem({
   corpComments,
 }: {
   corpComments: CorpComment[];
 }) {
-  const [comments, setComments] = useState<CorpComment[]>(corpComments);
-  const [upvoteCount, setUpvoteCount] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(false);
   // Get the data for the list item
   return (
     <>
@@ -50,7 +47,7 @@ export default function SingleListItem({
               <p className="text-lg font-bold">{corpComment.companyName}</p>
               <p className="text-sm">{corpComment.comment}</p>
             </div>
-            <p id="getCreatedAt" className="text-sm italic">
+            <p id="getCreatedAt" className="flex text-sm italic">
               {DAYS_AGO(corpComment)}
             </p>
           </div>

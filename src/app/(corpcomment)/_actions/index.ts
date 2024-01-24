@@ -6,23 +6,38 @@ import { redirect } from "next/navigation";
 import { CorpComment } from "@prisma/client";
 
 export default async function createCorpComment(formData: FormData) {
-  if (!formData) {
+  if (!formData || !formData.get("feedback")) {
     return;
   }
   const comment = formData.get("feedback") as string;
-  const companyName = comment.includes("#") ? comment.split("#")[0] : comment;
+  const companyName = comment
+    .split(" ")
+    .find((word) => word.startsWith("#"))
+    ?.substring(1);
+
+  if (!companyName) {
+    return; // or handle error
+  }
+
   const upvoteCount = 1;
-  const badgeLetters = companyName[0];
-  const newCorpComment = await prisma.corpComment.create({
-    data: {
-      comment,
-      companyName,
-      upvoteCount,
-      badgeLetters,
-    },
-  });
-  revalidatePath("/corp-comment");
-  redirect("/corp-comment");
+  const badgeLetters = companyName[0].toUpperCase();
+
+  try {
+    const newCorpComment = await prisma.corpComment.create({
+      data: {
+        comment,
+        companyName,
+        upvoteCount,
+        badgeLetters,
+      },
+    });
+    revalidatePath("/corp-comment");
+    redirect("/corp-comment");
+    return newCorpComment; // or some status
+  } catch (error) {
+    // handle error
+    console.error(error);
+  }
 }
 
 export async function updateCorpUpvoteCount(formData: FormData) {
