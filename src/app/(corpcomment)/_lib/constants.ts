@@ -4,7 +4,6 @@ export const MAX_CHARS = 150;
 
 export function DAYS_AGO(corpComment: CorpComment) {
   const publishedDate = corpComment.createdAt;
-  console.log("publishedDate", publishedDate);
   const today = new Date();
   const diffTime = Math.abs(today.getTime() - publishedDate.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));

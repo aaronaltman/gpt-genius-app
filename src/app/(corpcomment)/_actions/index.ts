@@ -69,15 +69,14 @@ export async function getAllCorpComments() {
 }
 
 // Filter List Items #HashTagITems
-export async function getCorpCommentsByCompanyName(companyName: string) {
-  const allCorpComments = await prisma.corpComment.findMany({
-    where: {
-      companyName: {
-        contains: companyName,
-      },
+export async function getCorpCommentsByCompanyName() {
+  const allCorpCommentNames = await prisma.corpComment.findMany({
+    select: {
+      id: true,
+      companyName: true,
     },
   });
-  return allCorpComments;
+  return allCorpCommentNames;
 }
 
 export async function getDaysAgoCorpComment(formData: CorpComment) {
