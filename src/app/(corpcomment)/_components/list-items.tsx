@@ -1,24 +1,21 @@
-"use server";
+"use client";
 
 import SingleListItem from "./single-list-item";
-import { getAllCorpComments, onClickSortCompanies } from "../_actions";
+import { getAllCorpComments } from "../_actions";
+import { CorpComment } from "@prisma/client";
 
-export default async function FeedbackList() {
+type FeedbackListProps = {
+  feedbacks: CorpComment[];
+};
+
+export default async function FeedbackList({ feedbacks }: FeedbackListProps) {
   // Fetch all comments
-  const corpComments = await getAllCorpComments();
 
-  // console.log("corpComments", corpComments);
-
-  const filteredCorpComments = () => {
-    const filteredCorpComments = corpComments.filter(
-      (corpComment: any) => corpComment.companyName === "Amazon"
-    );
-    return filteredCorpComments;
-  };
+  // Sort comments by company
   return (
     <>
       <ol className="w-full">
-        <SingleListItem corpComments={corpComments} />
+        <SingleListItem feedbacks={feedbacks} />
       </ol>
     </>
   );

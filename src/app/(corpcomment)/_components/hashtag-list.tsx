@@ -1,7 +1,16 @@
 import HashtagListButton from "./hashtag-list-button";
 import prisma from "@/db";
+import { CorpComment } from "@prisma/client";
 
-export default async function HashtagList() {
+type HashtagListProps = {
+  setFeedbacks: any;
+  feedbacks: CorpComment[];
+};
+
+export default async function HashtagList({
+  setFeedbacks,
+  feedbacks,
+}: HashtagListProps) {
   // Fetch unique company names with count of comments
   const corpComment = await prisma.corpComment.findMany({
     select: {
@@ -18,7 +27,11 @@ export default async function HashtagList() {
         {corpComment.map((e) => {
           return (
             <li key={e.id}>
-              <HashtagListButton theCompanyName={e} />
+              <HashtagListButton
+                feedbacks={feedbacks}
+                setfeedbacks={setFeedbacks}
+                theCompanyName={e}
+              />
             </li>
           );
         })}

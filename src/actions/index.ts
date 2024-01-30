@@ -61,3 +61,15 @@ export async function updateNote(formData: any) {
   });
   redirect("/prisma-example");
 }
+
+export async function filterCompanies(formData: any) {
+  const company = formData.get("companyName");
+  const companies = await prisma.corpComment.findMany({
+    where: {
+      companyName: {
+        contains: company,
+      },
+    },
+  });
+  return companies;
+}

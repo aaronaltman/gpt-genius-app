@@ -7,14 +7,14 @@ import { CorpComment } from "@prisma/client";
 import { motion } from "framer-motion";
 
 export default function SingleListItem({
-  corpComments,
+  feedbacks,
 }: {
-  corpComments: CorpComment[];
+  feedbacks: CorpComment[];
 }) {
   // Get the data for the list item
   return (
     <>
-      {corpComments.map((corpComment) => (
+      {feedbacks.map((corpComment) => (
         <li
           key={corpComment.id}
           className="flex flex-col justify-between items-center sm:flex-row bg-zinc-50 text-slate-900 p-4  rounded-lg shadow-sm mb-1 hover:scale-105 hover:my-2 transition-all hover:ease-in"
