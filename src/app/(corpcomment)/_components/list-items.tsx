@@ -1,5 +1,3 @@
-"use client";
-
 import SingleListItem from "./single-list-item";
 import { CorpComment } from "@prisma/client";
 
@@ -8,20 +6,21 @@ type FeedbackListProps = {
   setCorpComments: (corpComments: CorpComment[]) => void;
 };
 
-export default async function FeedbackList({
+export default function FeedbackList({
   corpComments,
   setCorpComments,
 }: FeedbackListProps) {
-  // Fetch all comments
-
-  // Sort comments by company
   return (
     <>
       <ol className="w-full">
-        <SingleListItem
-          corpComments={corpComments}
-          setCorpComments={setCorpComments}
-        />
+        {corpComments.map((comment) => (
+          <SingleListItem
+            key={comment.id} // Assuming each comment has a unique 'id'
+            comment={comment}
+            setCorpComments={setCorpComments}
+            corpComments={corpComments}
+          />
+        ))}
       </ol>
     </>
   );

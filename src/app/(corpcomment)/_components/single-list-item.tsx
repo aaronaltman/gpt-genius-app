@@ -9,11 +9,13 @@ import { motion } from "framer-motion";
 type SingleListItemProps = {
   corpComments: CorpComment[];
   setCorpComments: (corpComments: CorpComment[]) => void;
+  comment: CorpComment;
 };
 
 export default function SingleListItem({
   corpComments,
   setCorpComments,
+  comment,
 }: SingleListItemProps) {
   return (
     <>
