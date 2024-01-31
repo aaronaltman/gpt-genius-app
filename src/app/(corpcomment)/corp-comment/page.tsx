@@ -10,12 +10,15 @@ import { getAllCorpComments } from "../_actions";
 import { CorpComment } from "@prisma/client";
 
 export default function Page() {
-  const [feedbacks, setFeedbacks] = useState<CorpComment[]>([]);
+  const [corpComments, setCorpComments] = useState<CorpComment[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchFeedbacks = async () => {
-      const response = await getAllCorpComments();
-      setFeedbacks(response);
+      setLoading(true);
+      const allCorpComments = await getAllCorpComments();
+      setCorpComments(allCorpComments);
+      setLoading(false);
     };
     fetchFeedbacks();
   }, []);
@@ -26,8 +29,14 @@ export default function Page() {
         <div className="flex justify-center items-center flex-wrap lg:-ml-28">
           <div className="flex flex-wrap mx-auto p-4">
             <Footer />
-            <Container feedbacks={feedbacks} />
-            <HashtagList feedbacks={feedbacks} setFeedbacks={setFeedbacks} />
+            <Container
+              setCorpComments={setCorpComments}
+              corpComments={corpComments}
+            />
+            <HashtagList
+              setCorpComments={setCorpComments}
+              corpComments={corpComments}
+            />
           </div>
         </div>
       </Background>

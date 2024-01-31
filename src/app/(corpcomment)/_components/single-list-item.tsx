@@ -6,15 +6,18 @@ import { DAYS_AGO } from "../_lib/constants";
 import { CorpComment } from "@prisma/client";
 import { motion } from "framer-motion";
 
+type SingleListItemProps = {
+  corpComments: CorpComment[];
+  setCorpComments: (corpComments: CorpComment[]) => void;
+};
+
 export default function SingleListItem({
-  feedbacks,
-}: {
-  feedbacks: CorpComment[];
-}) {
-  // Get the data for the list item
+  corpComments,
+  setCorpComments,
+}: SingleListItemProps) {
   return (
     <>
-      {feedbacks.map((corpComment) => (
+      {corpComments.map((corpComment) => (
         <li
           key={corpComment.id}
           className="flex flex-col justify-between items-center sm:flex-row bg-zinc-50 text-slate-900 p-4  rounded-lg shadow-sm mb-1 hover:scale-105 hover:my-2 transition-all hover:ease-in"
