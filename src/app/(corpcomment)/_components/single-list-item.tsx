@@ -5,21 +5,14 @@ import { updateCorpUpvoteCount } from "../_actions";
 import { DAYS_AGO } from "../_lib/constants";
 import { CorpComment } from "@prisma/client";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { FeedbackItemsContext } from "../contexts/corp-comment-context-provider";
 
-type SingleListItemProps = {
-  corpComments: CorpComment[];
-  setCorpComments: (corpComments: CorpComment[]) => void;
-  comment: CorpComment;
-};
-
-export default function SingleListItem({
-  corpComments,
-  setCorpComments,
-  comment,
-}: SingleListItemProps) {
+export default function SingleListItem() {
+  const context = useContext(FeedbackItemsContext);
   return (
     <>
-      {corpComments.map((corpComment) => (
+      {context?.corpComments.map((corpComment) => (
         <li
           key={corpComment.id}
           className="flex flex-col justify-between items-center sm:flex-row bg-zinc-50 text-slate-900 p-4  rounded-lg shadow-sm mb-1 hover:scale-105 hover:my-2 transition-all hover:ease-in"

@@ -13,8 +13,8 @@ export default function Page() {
         <div className="flex justify-center items-center flex-wrap lg:-ml-28">
           <div className="flex flex-wrap mx-auto p-4">
             <Footer />
-            {/* <Container />
-            <HashtagList /> */}
+            <Container />
+            <HashtagList />
             <TestContextProvider />
           </div>
         </div>

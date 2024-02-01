@@ -1,10 +1,14 @@
 "use client";
 
-import { filterCompanies } from "@/actions";
-import { CorpComment } from "@prisma/client";
+import { useContext } from "react";
+import { FeedbackItemsContext } from "../contexts/corp-comment-context-provider";
 
 export default function HashtagListButton() {
-  const { companyName, setCorpComments, corpComments } = props;
+  const context = useContext(FeedbackItemsContext);
+
+  const handleClick = () => {
+    console.log("clicked");
+  };
 
   return (
     <button
@@ -12,7 +16,7 @@ export default function HashtagListButton() {
       onClick={handleClick}
     >
       #
-      {corpComments.map((comment) => {
+      {context?.corpComments.map((comment) => {
         return comment.companyName;
       })}
     </button>
