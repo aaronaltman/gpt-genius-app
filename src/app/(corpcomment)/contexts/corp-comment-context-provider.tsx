@@ -1,5 +1,8 @@
-import { useState, createContext } from "react";
+"use client";
+
+import { useState, createContext, useEffect } from "react";
 import { CorpComment } from "@prisma/client";
+import { getAllCorpComments } from "../_actions";
 
 type TfeedbackItemsContext = {
   corpComments: CorpComment[];
@@ -22,6 +25,16 @@ export default function CorpCommentContextProvider({
   const [corpComments, setCorpComments] = useState<CorpComment[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedCompany, setSelectedCompany] = useState<string>("");
+
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchCorpComments = async () => {
+      const response = await getAllCorpComments();
+      setCorpComments(response);
+      setIsLoading(false);
+    };
+    fetchCorpComments();
+  }, []);
 
   return (
     <FeedbackItemsContext.Provider

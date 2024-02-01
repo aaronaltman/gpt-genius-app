@@ -3,21 +3,8 @@
 import { filterCompanies } from "@/actions";
 import { CorpComment } from "@prisma/client";
 
-type HashtagListButtonProps = {
-  companyName: string; // Assuming you just need the company name
-  setCorpComments: (corpComments: CorpComment[]) => void;
-  corpComments: CorpComment[];
-};
-
-export default function HashtagListButton({
-  companyName,
-  setCorpComments,
-  corpComments,
-}: HashtagListButtonProps) {
-  const handleClick = async () => {
-    const response = await filterCompanies(companyName);
-    setCorpComments(response);
-  };
+export default function HashtagListButton() {
+  const { companyName, setCorpComments, corpComments } = props;
 
   return (
     <button

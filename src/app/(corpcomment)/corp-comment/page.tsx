@@ -4,6 +4,7 @@ import Container from "../_components/container";
 import Footer from "../_components/footer";
 import HashtagList from "../_components/hashtag-list";
 import CorpCommentContextProvider from "../contexts/corp-comment-context-provider";
+import TestContextProvider from "../_components/test-context-provider";
 
 export default function Page() {
   return (
@@ -12,8 +13,9 @@ export default function Page() {
         <div className="flex justify-center items-center flex-wrap lg:-ml-28">
           <div className="flex flex-wrap mx-auto p-4">
             <Footer />
-            <Container />
-            <HashtagList />
+            {/* <Container />
+            <HashtagList /> */}
+            <TestContextProvider />
           </div>
         </div>
       </Background>
