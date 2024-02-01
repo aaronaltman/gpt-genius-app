@@ -1,6 +1,5 @@
 import Header from "./header";
 import ListItems from "./list-items";
-import { CorpComment } from "@prisma/client";
 
 export default function Container() {
   return (

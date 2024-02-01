@@ -3,7 +3,6 @@
 import { TriangleUpIcon } from "@radix-ui/react-icons";
 import { updateCorpUpvoteCount } from "../_actions";
 import { DAYS_AGO } from "../_lib/constants";
-import { CorpComment } from "@prisma/client";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { FeedbackItemsContext } from "../contexts/corp-comment-context-provider";
