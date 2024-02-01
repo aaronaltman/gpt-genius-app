@@ -15,7 +15,6 @@ export default function Page() {
             <Footer />
             <Container />
             <HashtagList />
-            <TestContextProvider />
           </div>
         </div>
       </Background>
