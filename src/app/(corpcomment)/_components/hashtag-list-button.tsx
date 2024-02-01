@@ -11,7 +11,7 @@ export default function HashtagListButton() {
   };
 
   return (
-    <>
+    <div className="flex flex-col space-y-4">
       {context?.corpComments.map((comment) => (
         <button
           key={comment.companyName}
@@ -21,6 +21,6 @@ export default function HashtagListButton() {
           {comment.companyName}
         </button>
       ))}
-    </>
+    </div>
   );
 }
