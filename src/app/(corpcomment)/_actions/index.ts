@@ -6,38 +6,22 @@ import { redirect } from "next/navigation";
 import { CorpComment } from "@prisma/client";
 
 export default async function createCorpComment(formData: FormData) {
-  if (!formData || !formData.get("feedback")) {
+  // get the "feedback" from the form and then get companyname, comment, and upvoteCount
+  const companyName = "charlestone";
+  const comment = formData.get("feedback") as string;
+  const upvoteCount = 0;
+  if (!formData) {
     return;
   }
-  const comment = formData.get("feedback") as string;
-  const companyName = comment
-    .split(" ")
-    .find((word) => word.startsWith("#"))
-    ?.substring(1);
-
-  if (!companyName) {
-    return; // or handle error
-  }
-
-  const upvoteCount = 1;
-  const badgeLetters = companyName[0].toUpperCase();
-
-  try {
-    const newCorpComment = await prisma.corpComment.create({
-      data: {
-        comment,
-        companyName,
-        upvoteCount,
-        badgeLetters,
-      },
-    });
-    revalidatePath("/corp-comment");
-    redirect("/corp-comment");
-    return newCorpComment; // or some status
-  } catch (error) {
-    // handle error
-    console.error(error);
-  }
+  const corpComment = await prisma.corpComment.create({
+    data: {
+      companyName,
+      comment,
+      upvoteCount,
+      badgeLetters: "C",
+    },
+  });
+  return corpComment;
 }
 
 export async function updateCorpUpvoteCount(formData: FormData) {
@@ -62,7 +46,7 @@ export async function updateCorpUpvoteCount(formData: FormData) {
 export async function getAllCorpComments() {
   const allCorpComments = await prisma.corpComment.findMany({
     orderBy: {
-      upvoteCount: "desc",
+      createdAt: "desc",
     },
   });
   return allCorpComments;

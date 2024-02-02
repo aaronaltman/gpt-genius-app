@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { MAX_CHARS } from "../../_lib/constants";
 import createCorpComment from "@/app/(corpcomment)/_actions/index";
