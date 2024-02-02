@@ -30,7 +30,6 @@ export default function CorpCommentContextProvider({
     setIsLoading(true);
     const fetchCorpComments = async () => {
       const response = await getAllCorpComments();
-      console.log(response);
       setCorpComments(response);
       setIsLoading(false);
     };

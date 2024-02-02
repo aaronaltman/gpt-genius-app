@@ -9,17 +9,17 @@ export default function HashtagListButton() {
     (comment) => comment.companyName
   );
 
-  const handleClick = (companyName: string) => {
-    console.log("clicked", companyName);
+  const handleClick = () => {
+    console.log(filteredCompanies);
   };
 
   return (
     <div className="flex flex-col space-y-4">
       {context?.corpComments.map((comment) => (
         <button
-          key={comment.companyName}
+          key={comment.id}
           className="btn btn-ghost bg-accent hover:scale-105 hover:bg-white"
-          onClick={() => handleClick(comment.companyName)}
+          onClick={(e) => handleClick()}
         >
           {comment.companyName}
         </button>

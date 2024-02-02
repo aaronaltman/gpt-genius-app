@@ -7,9 +7,11 @@ import { CorpComment } from "@prisma/client";
 
 export default async function createCorpComment(formData: FormData) {
   // get the "feedback" from the form and then get companyname, comment, and upvoteCount
-  const companyName = "charlestone";
+
   const comment = formData.get("feedback") as string;
+  const companyName = comment.split("#")[0];
   const upvoteCount = 0;
+  const badgeLetters = companyName.charAt(0);
   if (!formData) {
     return;
   }
@@ -18,7 +20,7 @@ export default async function createCorpComment(formData: FormData) {
       companyName,
       comment,
       upvoteCount,
-      badgeLetters: "C",
+      badgeLetters,
     },
   });
   return corpComment;
