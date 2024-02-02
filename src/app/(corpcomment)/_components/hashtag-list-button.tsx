@@ -5,23 +5,25 @@ import { FeedbackItemsContext } from "../contexts/corp-comment-context-provider"
 
 export default function HashtagListButton() {
   const context = useContext(FeedbackItemsContext);
-  const filteredCompanies = context?.corpComments.map(
-    (comment) => comment.companyName
-  );
+  const uniqueCompanyNames = context?.corpComments
+    ? Array.from(
+        new Set(context.corpComments.map((comment) => comment.companyName))
+      )
+    : [];
 
-  const handleClick = () => {
-    console.log(filteredCompanies);
+  const handleClick = (e) => {
+    context?.setSelectedCompany(e.target.textContent);
   };
 
   return (
     <div className="flex flex-col space-y-4">
-      {context?.corpComments.map((comment) => (
+      {uniqueCompanyNames.map((companyName) => (
         <button
-          key={comment.id}
+          key={companyName}
           className="btn btn-ghost bg-accent hover:scale-105 hover:bg-white"
-          onClick={(e) => handleClick()}
+          onClick={handleClick}
         >
-          {comment.companyName}
+          #{companyName}
         </button>
       ))}
     </div>
