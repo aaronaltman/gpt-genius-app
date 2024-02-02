@@ -1,14 +1,12 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { MAX_CHARS } from "../../_lib/constants";
 import createCorpComment from "@/app/(corpcomment)/_actions/index";
-import { CorpCommentFormSchema } from "@/app/(corpcomment)/_lib/constants";
 import { set } from "zod";
 
 export default function FeedbackForm() {
   // Set State and Variables ------
-
   const [feedback, setFeedback] = useState("");
   const wordcount = MAX_CHARS - feedback.length;
 
@@ -26,8 +24,12 @@ export default function FeedbackForm() {
       alert("No scripts allowed");
       setFeedback("");
     } else {
-      createCorpComment(e);
-      setFeedback("Form Submitted");
+      const formData = new FormData(e.currentTarget);
+      createCorpComment(formData);
+      setFeedback("Form Submitted!");
+      setTimeout(() => {
+        setFeedback("");
+      }, 2500);
     }
   };
 
@@ -43,7 +45,7 @@ export default function FeedbackForm() {
         Feedback
       </label>
       <textarea
-        className=" input text-white w-full h-full resize-none p-4 bg-slate-900 my-6"
+        className="input text-white w-full h-full resize-none p-4 bg-slate-900 my-6"
         placeholder="Enter Feedback for CorpComment. include a # in front of companyName"
         id="feedback"
         name="feedback"
