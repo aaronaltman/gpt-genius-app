@@ -34,7 +34,7 @@ export default function CorpCommentContextProvider({
       setIsLoading(false);
     };
     fetchCorpComments();
-  }, [corpComments]);
+  }, []); // Removed corpComments from dependencies
 
   return (
     <FeedbackItemsContext.Provider

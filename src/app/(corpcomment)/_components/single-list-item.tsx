@@ -12,7 +12,9 @@ export default function SingleListItem() {
 
   return (
     <>
-      {}
+      {context?.isLoading && (
+        <span className="loading loading-ring loading-lg"></span>
+      )}
       {context?.corpComments
         .filter(
           (corpComment) =>
