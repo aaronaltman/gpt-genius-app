@@ -5,6 +5,9 @@ import { FeedbackItemsContext } from "../contexts/corp-comment-context-provider"
 
 export default function HashtagListButton() {
   const context = useContext(FeedbackItemsContext);
+  const filteredCompanies = context?.corpComments.map(
+    (comment) => comment.companyName
+  );
 
   const handleClick = (companyName: string) => {
     console.log("clicked", companyName);

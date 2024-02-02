@@ -20,10 +20,7 @@ export default function NoteCard() {
     <div className="card w-[300px] bg-base-100 shadow-xl mb-10">
       <div className="card-body">
         {notes.map((note) => (
-          <>
-            <p key={note.id}>{note.title}</p>
-            <p>{note.content}</p>
-          </>
+          <></>
         ))}
 
         <div className="card-actions justify-end">
