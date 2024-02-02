@@ -1,4 +1,5 @@
 import { CorpComment } from "@prisma/client";
+import { z } from "zod";
 
 export const MAX_CHARS = 150;
 
@@ -13,21 +14,9 @@ export function DAYS_AGO(corpComment: CorpComment) {
   return `${diffDays} d`;
 }
 
-export const HASHTAG_LIST_ITEMS = [
-  {
-    id: 1,
-    name: "#General",
-  },
-  {
-    id: 2,
-    name: "#Nike",
-  },
-  {
-    id: 3,
-    name: "#Adidas",
-  },
-  {
-    id: 4,
-    name: "#Starbucks",
-  },
-];
+export const CorpCommentFormSchema = z.object({
+  feedback: z
+    .string()
+    .max(MAX_CHARS, `Feedback must be at most ${MAX_CHARS} characters long`)
+    .regex(/#/, "Feedback must include at least one hashtag (#)"),
+});

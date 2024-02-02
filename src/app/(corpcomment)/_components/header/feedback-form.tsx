@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { MAX_CHARS } from "../../_lib/constants";
 import createCorpComment from "@/app/(corpcomment)/_actions/index";
+import { CorpCommentFormSchema } from "@/app/(corpcomment)/_lib/constants";
+import { set } from "zod";
 
 export default function FeedbackForm() {
   // Set State and Variables ------
@@ -10,15 +12,32 @@ export default function FeedbackForm() {
   const [feedback, setFeedback] = useState("");
   const wordcount = MAX_CHARS - feedback.length;
 
+  const handleFormSubmit = (e: any) => {
+    const hasScript = /<script>/i.test(feedback);
+    e.preventDefault();
+    if (
+      feedback.length > MAX_CHARS ||
+      feedback.length < 1 ||
+      !feedback.includes("#")
+    ) {
+      alert("Feedback must be between 1 and 500 characters and include a #");
+      setFeedback("");
+    } else if (hasScript) {
+      alert("No scripts allowed");
+      setFeedback("");
+    } else {
+      createCorpComment(e);
+      setFeedback("Form Submitted");
+    }
+  };
+
   // Feedback Form ------
 
   return (
     <form
       action={createCorpComment}
       className="flex flex-col  bg-slate-900 my-12 rounded-lg px-10 border border-white shadow-lg w-3/4"
-      onSubmit={(e) => {
-        setFeedback("form submitted!");
-      }}
+      onSubmit={handleFormSubmit}
     >
       <label hidden htmlFor="feedback">
         Feedback
