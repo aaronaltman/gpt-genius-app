@@ -11,8 +11,9 @@ export default function HashtagListButton() {
       )
     : [];
 
-  const handleClick = (e) => {
-    context?.setSelectedCompany(e.target.textContent);
+  const handleClick = (e: any) => {
+    const companyNameNoHashtag = e.target.textContent.slice(1).toLowerCase();
+    context?.setSortBy(companyNameNoHashtag);
   };
 
   return (

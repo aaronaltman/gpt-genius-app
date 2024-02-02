@@ -9,8 +9,8 @@ type TfeedbackItemsContext = {
   setCorpComments: (corpComments: CorpComment[]) => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
-  selectedCompany: string;
-  setSelectedCompany: (company: string) => void;
+  sortBy: string;
+  setSortBy: (company: string) => void;
 };
 
 export const FeedbackItemsContext = createContext<TfeedbackItemsContext | null>(
@@ -24,7 +24,7 @@ export default function CorpCommentContextProvider({
 }) {
   const [corpComments, setCorpComments] = useState<CorpComment[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [selectedCompany, setSelectedCompany] = useState<string>("");
+  const [sortBy, setSortBy] = useState<string>("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -43,8 +43,8 @@ export default function CorpCommentContextProvider({
         setCorpComments,
         isLoading,
         setIsLoading,
-        selectedCompany,
-        setSelectedCompany,
+        sortBy,
+        setSortBy,
       }}
     >
       {children}
