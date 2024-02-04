@@ -13,7 +13,7 @@ export default function HashtagListButton() {
     : [];
 
   const handleClick = async (e: any) => {
-    const companyNameNoHashtag = e.target.textContent.slice(1).toLowerCase();
+    const companyNameNoHashtag = e.target.textContent.slice(1).toUpperCase();
 
     try {
       // Assume getAllCorpComments() fetches and returns the data
@@ -29,13 +29,14 @@ export default function HashtagListButton() {
     }
   };
 
-  const handleAllCompaniesReset = async () => {
+  const handleAllCompaniesReset = async (e: any) => {
     try {
       // Assume getAllCorpComments() fetches and returns the data
       const allComments = await getAllCorpComments();
       console.log("allComments:", allComments);
       // Now, update your context with this fetched data
       context?.setCorpComments(allComments);
+      context?.setSortBy("");
       // Then, set the sortBy state to "all"
     } catch (error) {
       console.error("Failed to refresh database:", error);

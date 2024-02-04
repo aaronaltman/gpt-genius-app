@@ -6,15 +6,18 @@ import { redirect } from "next/navigation";
 import { CorpComment } from "@prisma/client";
 
 export default async function createCorpComment(formData: FormData) {
-  // get the "feedback" from the form and then get companyname, comment, and upvoteCount
-
-  const comment = formData.get("feedback") as string;
-  const companyName = comment.split("#")[0];
-  const upvoteCount = 0;
-  const badgeLetters = companyName.charAt(0);
   if (!formData) {
     return;
   }
+
+  const comment = formData.get("feedback") as string;
+  // Use regex to find the letter following the first '#'
+  const regexResult = comment.match(/#(\w+)/);
+  const companyName = regexResult ? regexResult[1].toUpperCase() : "";
+  // Get first letter after # or default to empty string if not found
+  const upvoteCount = 0;
+  const badgeLetters = companyName.charAt(0); // This will be the first letter after # as per companyName extraction
+
   const corpComment = await prisma.corpComment.create({
     data: {
       companyName,
@@ -23,7 +26,7 @@ export default async function createCorpComment(formData: FormData) {
       badgeLetters,
     },
   });
-  return corpComment;
+  revalidatePath("/corp-comment");
 }
 
 export async function updateCorpUpvoteCount(formData: FormData) {
