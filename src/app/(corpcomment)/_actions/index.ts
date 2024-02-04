@@ -27,6 +27,7 @@ export default async function createCorpComment(formData: FormData) {
     },
   });
   revalidatePath("/corp-comment");
+  redirect("/corp-comment");
 }
 
 export async function updateCorpUpvoteCount(formData: FormData) {

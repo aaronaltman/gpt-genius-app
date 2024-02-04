@@ -12,8 +12,10 @@ export default function SingleListItem() {
 
   return (
     <>
-      {context?.isLoading && (
-        <span className="loading loading-ring loading-lg"></span>
+      {!context?.isLoading && !context?.corpComments.length && (
+        <div className="flex justify-center">
+          <span className="loading loading-ring loading-lg"></span>
+        </div>
       )}
       {context?.corpComments
         .filter(
